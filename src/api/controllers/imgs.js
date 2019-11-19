@@ -12,6 +12,7 @@ const client = new vision.ImageAnnotatorClient({
 });
 
 export default {
+  // Get labels after Image upload
   imgUpload: async (req, res, next) => {
     try {
       const label_array = [];

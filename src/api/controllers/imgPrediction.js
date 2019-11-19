@@ -5,7 +5,7 @@ import path from "path";
 
 dotenv.config();
 
-const client = new automl.PredictionServiceClient({
+const client = new automl.v1beta1.PredictionServiceClient({
   keyFilename: path.join(
     __dirname,
     "../../../image-search-259413-15b62d3892fb.json"
@@ -14,11 +14,11 @@ const client = new automl.PredictionServiceClient({
 const projectId = process.env.PROJECT_ID;
 const computeRegion = "us-central1";
 const modelId = process.env.MODEL_ID;
-// const filePath = `local text file path of content to be classified, e.g. "./resources/test.txt"`;
 const scoreThreshold = "0.5";
 const filePath = path.join(__dirname, "../../resources/lion.jpeg");
 
 export default {
+  // Get the image class name and class score of an image
   prediction: async (req, res, next) => {
     try {
       // Model path
