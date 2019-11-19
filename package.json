@@ -1,0 +1,32 @@
+{
+  "name": "image_search",
+  "version": "1.0.0",
+  "description": "An image search app",
+  "main": "server.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "start": "babel-watch ./src/server.js",
+    "build": "npm run clean && npm run build-server",
+    "build-server": "babel -d ./build ./src -s"
+  },
+  "author": "Chilaka Chinedu",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/runtime": "^7.7.2",
+    "@google-cloud/automl": "^1.9.2",
+    "@google-cloud/storage": "^4.1.2",
+    "@google-cloud/vision": "^1.7.1",
+    "axios": "^0.19.0",
+    "babel-watch": "^7.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {},
+  "keywords": []
+}
