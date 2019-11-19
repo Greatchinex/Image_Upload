@@ -17,3 +17,9 @@ https://image-search-259413.appspot.com/imageupload -
 <br> PS: I only trained three different labels in the Dogs dataset
 <code> afghan_hound, beagle and maltease_dog </code>
 <br> And the training and image labelling process was done Via the AUTOML Dashboard
+
+## Postman
+
+in the Request body when uploading an image, from the form-data
+<br> The key should be the string "image" and the value should be the image file. e.g
+<br> image "Image to be uploaded"
