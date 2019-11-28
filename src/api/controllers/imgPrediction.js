@@ -1,5 +1,4 @@
 import automl from "@google-cloud/automl";
-import fs from "fs";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -11,11 +10,13 @@ const client = new automl.v1beta1.PredictionServiceClient({
     "../../../image-search-259413-15b62d3892fb.json"
   )
 });
+
+// console.log(client);
+
 const projectId = process.env.PROJECT_ID;
 const computeRegion = process.env.COMPUTE_REGION;
 const modelId = process.env.MODEL_ID;
 const scoreThreshold = "0.5";
-const filePath = path.join(__dirname, "../../resources/lion.jpeg");
 
 export default {
   // Get the image class name and class score of an image
@@ -25,15 +26,18 @@ export default {
       const modelFullId = client.modelPath(projectId, computeRegion, modelId);
 
       // Read the file content for prediction.
-      const content = fs.readFileSync(filePath, "base64");
+      const content = req.file.buffer;
 
       const params = {};
 
+      // If there is a score threshold assign to d params object
       if (scoreThreshold) {
         params.score_threshold = scoreThreshold;
       }
 
       const payload = {};
+
+      // Assign uploaded image to payload
       payload.image = { imageBytes: content };
 
       const [response] = await client.predict({
@@ -42,6 +46,7 @@ export default {
         params: params
       });
 
+      // Empty arrays to push d className and classScore to...
       const className = [];
       const classScore = [];
 
@@ -51,9 +56,7 @@ export default {
         classScore.push(result.classification.score)
       );
 
-      console.log(className);
-      console.log(classScore);
-
+      // Response
       res.status(200).json({
         Predicted_class_name: className,
         Predicted_class_score: classScore

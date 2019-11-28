@@ -9,7 +9,7 @@ const router = express.Router();
 router.post(
   "/predict",
   uploads.single("image"),
-  sendUploadToGCS,
+  // sendUploadToGCS,
   imgPredict.prediction
 );
 
